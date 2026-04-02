@@ -4,7 +4,7 @@ import os
 
 app = FastAPI()
 
-sdk = mercadopago.SDK(os.getenv(TEST-8106144427069822-040215-cf28994666e69fbba7a6832835aab523-3257438363))
+sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_ACCESS_TOKEN"))
 
 # "Base de datos" temporal
 users = {}
