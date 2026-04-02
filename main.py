@@ -18,15 +18,15 @@ async def create_payment(data: dict):
 
     return {"payment_url": payment_url}
 
+from pydantic import BaseModel
+
+class WebhookData(BaseModel):
+    email: str
+
 @app.post("/webhook")
-async def webhook(request: Request):
-    payload = await request.json()
-
-    email = payload.get("email")
-
-    if email:
-        users[email] = "paid"
-
+async def webhook(data: WebhookData):
+    email = data.email
+    users[email] = "paid"
     return {"status": "received"}
 
 @app.get("/check-access")
