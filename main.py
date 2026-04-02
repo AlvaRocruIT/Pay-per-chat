@@ -1,8 +1,21 @@
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI, Request
 import mercadopago
 import os
 
 app = FastAPI()
+
+origins = [
+    "https://alvarocruit.github.io",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 sdk = mercadopago.SDK(os.getenv("MERCADO_PAGO_ACCESS_TOKEN"))
 
