@@ -17,10 +17,26 @@ def root():
 async def create_payment(data: dict):
     email = data.get("email")
 
-    # Simulación (luego conectas Mercado Pago)
-    payment_url = f"link.mercadopago.cl/founderbot={email}"
+    preference_data = {
+        "items": [
+            {
+                "title": "Acceso FounderBot",
+                "quantity": 1,
+                "unit_price": 10000
+            }
+        ],
+        "payer": {
+            "email": email
+        },
+        "external_reference": email,
+        "notification_url": "https://pay-per-chat.onrender.com/webhook"
+    }
 
-    return {"payment_url": payment_url}
+    preference = sdk.preference().create(preference_data)
+
+    return {
+        "preference_id": preference["response"]["id"]
+    }
 
 @app.post("/webhook")
 async def webhook(request: Request):
