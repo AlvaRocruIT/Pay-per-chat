@@ -14,7 +14,7 @@ async def create_payment(data: dict):
     email = data.get("email")
 
     # Simulación (luego conectas Mercado Pago)
-    payment_url = f"https://fake-payment.com/pay?email={email}"
+    payment_url = f"link.mercadopago.cl/founderbot={email}"
 
     return {"payment_url": payment_url}
 
