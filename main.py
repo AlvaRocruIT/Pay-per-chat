@@ -38,17 +38,17 @@ async def webhook(request: Request):
 
     print("Payment data:", payment_data)
 
-if payment_data.get("status") == "approved":
-    email = payment_data.get("external_reference")
+    if payment_data.get("status") == "approved":
+        email = payment_data.get("external_reference")
 
-    if not email:
-        email = payment_data.get("payer", {}).get("email")
+        if not email:
+            email = payment_data.get("payer", {}).get("email")
 
-    if email:
-        users[email] = "paid"
-        print(f"Usuario {email} marcado como pagado")
+        if email:
+            users[email] = "paid"
+            print(f"Usuario {email} marcado como pagado")
 
-    return {"status": "ok"}
+    return {"status": "ok"}  # ✅ dentro de la función
 
 @app.get("/check-access")
 def check_access(email: str):
