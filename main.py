@@ -42,7 +42,7 @@ async def create_payment(data: dict):
             "email": email
         },
         "external_reference": email,
-        "notification_url": "https://pay-per-chat.onrender.com/webhook"
+        "notification_url": "https://founder-backend-yo6y.onrender.com/webhook"
     }
 
     preference = sdk.preference().create(preference_data)
